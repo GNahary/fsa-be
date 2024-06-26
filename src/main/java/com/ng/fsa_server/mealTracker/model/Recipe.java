@@ -1,5 +1,6 @@
 package com.ng.fsa_server.mealTracker.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -13,6 +14,7 @@ public class Recipe {
     private String _id; // MongoDB's default ID field
 
     @Field(name = "id")
+    @JsonProperty("id")
     private String customId; // Custom ID field
     private String name;
     private List<Ingredient> ingredients;
