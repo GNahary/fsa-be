@@ -4,6 +4,7 @@ import com.ng.fsa_server.mealTracker.model.Meal;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,6 @@ public interface MealsRepository extends MongoRepository<Meal, String> {
     List<Meal> findAll();
     Meal insert(Meal recipe);
 
-//    void deleteByRecipeId(String recipeId);
+    List<Meal> findByPlannedDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
 
