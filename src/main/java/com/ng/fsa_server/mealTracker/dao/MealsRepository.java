@@ -13,7 +13,5 @@ public interface MealsRepository extends MongoRepository<Meal, String> {
     Optional<Meal> findBy_id(String _id);
     List<Meal> findAll();
     Meal insert(Meal recipe);
-
-    List<Meal> findByPlannedDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
 
