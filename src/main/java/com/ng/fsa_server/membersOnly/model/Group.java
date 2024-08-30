@@ -1,4 +1,4 @@
-package com.ng.fsa_server.membersOnly.model.model;
+package com.ng.fsa_server.membersOnly.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;

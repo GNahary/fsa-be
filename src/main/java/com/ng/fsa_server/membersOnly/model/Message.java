@@ -1,4 +1,4 @@
-package com.ng.fsa_server.membersOnly.model.model;
+package com.ng.fsa_server.membersOnly.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

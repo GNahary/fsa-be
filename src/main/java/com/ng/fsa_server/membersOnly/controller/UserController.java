@@ -1,7 +1,9 @@
-package com.ng.fsa_server.membersOnly.model.controller;
+package com.ng.fsa_server.membersOnly.controller;
 
-import com.ng.fsa_server.membersOnly.model.model.User;
-import com.ng.fsa_server.membersOnly.model.service.UserService;
+import com.ng.fsa_server.membersOnly.dto.GroupDTO;
+import com.ng.fsa_server.membersOnly.model.User;
+import com.ng.fsa_server.membersOnly.service.GroupService;
+import com.ng.fsa_server.membersOnly.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+    private GroupService groupService;
+
+    @Autowired
     private UserService userService;
 
     @GetMapping
@@ -21,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/groups")
-    public String requestToJoinGroup(@PathVariable String userId){
-        return "got request to get groups of user" + userId;
+    public List<GroupDTO> getGroupsForUser(@PathVariable String userId){
+        return groupService.getGroupForUser(userId);
     }
 }

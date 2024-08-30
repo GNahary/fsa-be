@@ -1,4 +1,4 @@
-package com.ng.fsa_server.membersOnly.model.model;
+package com.ng.fsa_server.membersOnly.model;
 
 public class Request {
     private String id;

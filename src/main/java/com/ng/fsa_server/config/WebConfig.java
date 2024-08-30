@@ -1,4 +1,4 @@
-package com.ng.fsa_server.mealTracker.config;
+package com.ng.fsa_server.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
