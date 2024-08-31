@@ -3,11 +3,13 @@ package com.ng.fsa_server.membersOnly.service;
 import com.ng.fsa_server.membersOnly.converter.GroupConverter;
 import com.ng.fsa_server.membersOnly.dao.GroupRepository;
 import com.ng.fsa_server.membersOnly.dto.GroupDTO;
+import com.ng.fsa_server.membersOnly.model.Group;
 import com.ng.fsa_server.membersOnly.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +33,10 @@ public class GroupService {
         boolean isOwner = group.getOwner().getCustomId().equals(userId);
         boolean isMember = group.getMembers().stream().map(User::getCustomId).filter(memberId->memberId.equals(userId)).findFirst().isEmpty();
         return isMember || isOwner;
+    }
+
+    public GroupDTO createGroup(String userId, String groupName){
+        return groupConverter.toGroupDTO(groupRepository.insert(new Group(UUID.randomUUID().toString(), groupName, userId)));
     }
 
 }

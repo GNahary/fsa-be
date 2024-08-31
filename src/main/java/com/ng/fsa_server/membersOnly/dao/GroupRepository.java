@@ -10,7 +10,7 @@ import java.util.List;
 public interface GroupRepository extends MongoRepository<Group, String> {
     List<Group> findAll();
 //    Optional<Group> findBy_id(String _id);
-//    Group insert(Group group);
+    Group insert(Group group);
 //
 //    void deleteByName(String name);
 }

@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "members-only-groups")
@@ -19,9 +20,15 @@ public class Group {
     private String name;
     private String ownerId;
     @Field(name = "members")
-    private List<String> membersIds;
+    private List<String> membersIds = new ArrayList<>();
 
     public Group() {
+    }
+
+    public Group(String customId, String name, String ownerId) {
+        this.customId = customId;
+        this.name = name;
+        this.ownerId = ownerId;
     }
 
     public Group(String _id, String customId, String name, String ownerId, List<String> members) {
