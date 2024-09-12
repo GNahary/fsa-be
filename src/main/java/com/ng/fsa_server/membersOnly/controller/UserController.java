@@ -43,7 +43,7 @@ public class UserController {
                 return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
             }
 
-            return ResponseEntity.ok(groupService.getGroupForUser(userId));
+            return ResponseEntity.ok(groupService.getAllGroupsForUser(userId));
 
         } catch (FirebaseAuthException e) {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);

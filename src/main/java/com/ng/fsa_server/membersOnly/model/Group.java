@@ -31,14 +31,6 @@ public class Group {
         this.ownerId = ownerId;
     }
 
-    public Group(String _id, String customId, String name, String ownerId, List<String> members) {
-        this._id = _id;
-        this.customId = customId;
-        this.name = name;
-        this.ownerId = ownerId;
-        this.membersIds = members;
-    }
-
     public String get_id() {
         return _id;
     }

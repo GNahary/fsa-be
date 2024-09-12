@@ -1,25 +1,26 @@
 package com.ng.fsa_server.membersOnly.dto;
 
-import com.ng.fsa_server.membersOnly.model.Message;
-import com.ng.fsa_server.membersOnly.model.Request;
 import com.ng.fsa_server.membersOnly.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupDTO {
 
     private String id;
+    private String customId;
     private String name;
     private User owner;
     private List<User> members;
-    private Request[] requests;
-    private Message[] messages;
+    private List<RequestDTO> requests = new ArrayList<>();
+    private List<MessageDTO> messages = new ArrayList<>();;
 
     public GroupDTO() {
     }
 
-    public GroupDTO(String id, String name, User owner, List<User> members, Request[] requests, Message[] messages) {
+    public GroupDTO(String id, String customId, String name, User owner, List<User> members, List<RequestDTO> requests, List<MessageDTO> messages) {
         this.id = id;
+        this.customId = customId;
         this.name = name;
         this.owner = owner;
         this.members = members;
@@ -59,19 +60,27 @@ public class GroupDTO {
         this.members = members;
     }
 
-    public Request[] getRequests() {
+    public List<RequestDTO> getRequests() {
         return requests;
     }
 
-    public void setRequests(Request[] requests) {
+    public void setRequests(List<RequestDTO> requests) {
         this.requests = requests;
     }
 
-    public Message[] getMessages() {
+    public List<MessageDTO> getMessages() {
         return messages;
     }
 
-    public void setMessages(Message[] messages) {
+    public void setMessages(List<MessageDTO> messages) {
         this.messages = messages;
+    }
+
+    public String getCustomId() {
+        return customId;
+    }
+
+    public void setCustomId(String customId) {
+        this.customId = customId;
     }
 }
