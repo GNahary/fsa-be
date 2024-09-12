@@ -45,11 +45,11 @@ public class RequestController {
 
             GroupDTO requestedGroup = groupService.getGroupForUser(approverId, requestedGroupId);
 
-            if(requestedGroup.getOwner().getCustomId().equals(approverId)){
+            if(!requestedGroup.getOwner().getCustomId().equals(approverId)){
                 return new ResponseEntity<>(Collections.emptyList(), HttpStatus.UNAUTHORIZED);
             }
 
-            groupService.acceptRequest(userId, requestedGroupId, requestId);
+            groupService.acceptRequest(userId, requestedGroupId, request.get_id());
             List<RequestDTO> currentGroupRequests = requestService.findRequestsForGroup(requestedGroupId);
             return ResponseEntity.ok(currentGroupRequests);
 
@@ -73,11 +73,11 @@ public class RequestController {
 
             GroupDTO requestedGroup = groupService.getGroupForUser(approverId, requestedGroupId);
 
-            if(requestedGroup.getOwner().getCustomId().equals(approverId)){
+            if(!requestedGroup.getOwner().getCustomId().equals(approverId)){
                 return new ResponseEntity<>(Collections.emptyList(), HttpStatus.UNAUTHORIZED);
             }
 
-            groupService.rejectRequest(requestId);
+            groupService.rejectRequest(request.get_id());
             List<RequestDTO> currentGroupRequests = requestService.findRequestsForGroup(requestedGroupId);
             return ResponseEntity.ok(currentGroupRequests);
 

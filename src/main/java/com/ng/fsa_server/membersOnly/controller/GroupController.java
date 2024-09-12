@@ -63,7 +63,7 @@ public class GroupController {
                 return new ResponseEntity<>("Must be logged in", HttpStatus.UNAUTHORIZED);
             }
 
-            requestService.createJoinRequest(userId, groupId);
+            groupService.createJoinRequest(userId, groupId);
             return ResponseEntity.ok("Request created to join" + groupId);
 
         } catch (FirebaseAuthException e) {

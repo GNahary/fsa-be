@@ -12,6 +12,5 @@ import java.util.Optional;
 public interface GroupRepository extends MongoRepository<Group, String> {
     List<Group> findAll();
     Optional<Group> findBy_id(String _id);
-    Optional<Group> findByCustomId(@Param("id") String id);
     Group insert(Group group);
 }

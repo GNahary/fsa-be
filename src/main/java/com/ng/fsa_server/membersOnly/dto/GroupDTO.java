@@ -18,9 +18,8 @@ public class GroupDTO {
     public GroupDTO() {
     }
 
-    public GroupDTO(String id, String customId, String name, User owner, List<User> members, List<RequestDTO> requests, List<MessageDTO> messages) {
+    public GroupDTO(String id, String name, User owner, List<User> members, List<RequestDTO> requests, List<MessageDTO> messages) {
         this.id = id;
-        this.customId = customId;
         this.name = name;
         this.owner = owner;
         this.members = members;
@@ -74,13 +73,5 @@ public class GroupDTO {
 
     public void setMessages(List<MessageDTO> messages) {
         this.messages = messages;
-    }
-
-    public String getCustomId() {
-        return customId;
-    }
-
-    public void setCustomId(String customId) {
-        this.customId = customId;
     }
 }

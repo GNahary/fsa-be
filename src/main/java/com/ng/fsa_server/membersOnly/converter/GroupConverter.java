@@ -17,7 +17,6 @@ public class GroupConverter {
 
     public GroupDTO toGroupDTO(Group group){
         return new GroupDTO(group.get_id(),
-                group.getCustomId(),
                 group.getName(),
                 userService.findUserById(group.getOwnerId()),
                 userService.findUsersById(group.getMembersIds()),

@@ -5,6 +5,7 @@ import com.ng.fsa_server.membersOnly.dao.GroupRepository;
 import com.ng.fsa_server.membersOnly.dto.GroupDTO;
 import com.ng.fsa_server.membersOnly.dto.RequestDTO;
 import com.ng.fsa_server.membersOnly.model.Group;
+import com.ng.fsa_server.membersOnly.model.Request;
 import com.ng.fsa_server.membersOnly.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,12 +36,12 @@ public class GroupService {
     public GroupDTO getGroupForUser(String userId, String groupId){
         GroupDTO groupDTO = groupConverter.toGroupDTO(groupRepository.findBy_id(groupId).orElseThrow());
         if(isOwner(userId, groupDTO)){
-            List<RequestDTO> requests = requestService.findRequestsForGroup(groupDTO.getCustomId());
+            List<RequestDTO> requests = requestService.findRequestsForGroup(groupId);
             groupDTO.setRequests(requests);
         }
 
         if(isOwner(userId, groupDTO) || isMember(userId, groupDTO)){
-            groupDTO.setMessages(messageService.findMessageForGroup(groupDTO.getCustomId()));
+            groupDTO.setMessages(messageService.findMessageForGroup(groupId));
         }
 
         return groupDTO;
@@ -67,11 +68,11 @@ public class GroupService {
     }
 
     public GroupDTO createGroup(String userId, String groupName){
-        return groupConverter.toGroupDTO(groupRepository.insert(new Group(UUID.randomUUID().toString(), groupName, userId)));
+        return groupConverter.toGroupDTO(groupRepository.insert(new Group(groupName, userId)));
     }
 
     public void addMember(String requestedGroupId, String userId){
-        Group requestedGroup = groupRepository.findByCustomId(requestedGroupId).orElseThrow();
+        Group requestedGroup = groupRepository.findById(requestedGroupId).orElseThrow();
         List<String> memberIds = requestedGroup.getMembersIds();
         if(!memberIds.contains(userId)){
             memberIds.add(userId);
@@ -92,9 +93,12 @@ public class GroupService {
 
 
     public GroupDTO addMessageToGroup(String groupId, String userId, String messageText){
-        Group group = groupRepository.findBy_id(groupId).orElseThrow();
-        messageService.createMessage(group.getCustomId(),userId,messageText);
+        messageService.createMessage(groupId,userId,messageText);
         return getGroupForUser(userId, groupId);
+    }
+
+    public Request createJoinRequest(String userId, String groupId){
+        return requestService.createJoinRequest( userId, groupId);
     }
 
 }

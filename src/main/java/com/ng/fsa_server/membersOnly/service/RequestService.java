@@ -24,7 +24,7 @@ public class RequestService {
     }
 
     public Request findById(String requestId){
-        return requestRepository.findBy_id(requestId);
+        return requestRepository.findByCustomId(requestId);
     }
 
     public List<RequestDTO> findRequestsForGroup(String groupId){
