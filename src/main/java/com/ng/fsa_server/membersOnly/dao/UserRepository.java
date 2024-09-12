@@ -1,6 +1,5 @@
 package com.ng.fsa_server.membersOnly.dao;
 
-import com.ng.fsa_server.mealTracker.model.Recipe;
 import com.ng.fsa_server.membersOnly.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
